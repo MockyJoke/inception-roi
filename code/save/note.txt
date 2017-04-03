@@ -1,0 +1,8 @@
+1 -----------------------------
+sgd = optimizers.SGD(lr=0.000001)
+y = Dense(2048, activation='relu', name='fc2-1')(base_model_last)
+aux_predictions = Dense(4, activation='linear', name='aux_predictions')(y)
+
+model = Model(input=base_model.input, output=aux_predictions)
+sgd = optimizers.SGD(lr=0.000001)
+model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['accuracy'])
